@@ -1,3 +1,4 @@
+# 只有预测结果散点图可视化 + 预测结果&评价指标保存
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -98,7 +99,7 @@ def main(input_path, output_path):
     
     # 反向预测
     X_reverse = df[['Temp', 'Viscosity']]
-    y_reverse = df.drop(columns=['Temp', 'Viscosity', 'Basicity'])  # 前11列
+    y_reverse = df.drop(columns=['Temp', 'Viscosity'])  # 前11列
     X_train_r, X_test_r, y_train_r, y_test_r = train_test_split(
         X_reverse, y_reverse, test_size=0.2, random_state=42)
     
@@ -132,6 +133,6 @@ def main(input_path, output_path):
             preds_df.to_excel(writer, sheet_name=f'Reverse_{model}_Predictions', index=False)
 
 if __name__ == "__main__":
-    input_file = "your_data.xlsx"    # 修改为实际输入路径
-    output_file = "results.xlsx"     # 修改为实际输出路径
+    input_file = "data.xlsx"    # 修改为实际输入路径
+    output_file = "res1.xlsx"     # 修改为实际输出路径
     main(input_file, output_file)
